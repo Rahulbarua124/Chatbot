@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FASAL: Echo Chamber</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGxhbnR8ZW58MHx8MHx8fDA%3D') no-repeat center center fixed;
+      background-size: cover;
+      color: #faf1f1;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+
+    .card {
+      padding: 25px;
+      background: rgba(240, 156, 156, 0.75);
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      width: 90%;
+      max-width: 450px;
+      margin: 25px auto;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    input, button {
+      margin: 10px;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: rgb(20, 19, 19);
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3e8e41;
+    }
+
+    .section-image {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button-row button {
+      flex: 1 1 40%;
+    }
+
+    .highlight {
+      color: #00ff95;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌿 FASAL: Echo Chamber</h1>
+
+  <!-- Upload Card -->
+  <div class="card">
+    <img src="https://cdn-icons-png.flaticon.com/512/2714/2714046.png" class="section-image" alt="Upload" />
+    <h2>Upload Crop Image</h2>
+    <input type="file" id="imageInput" />
+    <br />
+    <div class="button-row">
+      <button onclick="uploadImage()">🌾 Detect</button>
+      <button onclick="resetResult()">🔄 Reset</button>
+    </div>
+    <h3 id="result"></h3>
+  </div>
+
+  <!-- Weather Card -->
+  <div class="card">
+    <img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" class="section-image" alt="Weather" />
+    <h2>🌤 Weather Status</h2>
+    <button onclick="fetchWeather()">Get Weather</button>
+    <div id="weatherInfo" style="margin-top: 10px;"></div>
+  </div>
+
+  <!-- Reminders Card -->
+  <div class="card">
+    <img src="https://cdn-icons-png.flaticon.com/512/1067/1067566.png" class="section-image" alt="Reminders" />
+    <h2>🔔 Reminders</h2>
+    <p>💧 <span class="highlight">Water crops</span> tomorrow morning</p>
+    <p>🐛 <span class="highlight">Pest check</span> every Monday</p>
+    <button onclick="alert('Coming soon: Custom reminders!')">+ Add Reminder</button>
+  </div>
+
+  <!-- Tips Card -->
+  <div class="card">
+    <img src="https://cdn-icons-png.flaticon.com/512/2284/2284874.png" class="section-image" alt="Tips" />
+    <h2>🌱 Organic Farming Tips</h2>
+    <p>🌿 Use neem spray for natural pest control.</p>
+    <p>🌾 Rotate crops every season.</p>
+    <button onclick="alert('More tips coming soon!')">Read More</button>
+  </div>
+
+  <script>
+    async function uploadImage() {
+      const fileInput = document.getElementById('imageInput');
+      const formData = new FormData();
+      formData.append('image', fileInput.files[0]);
+
+      const response = await fetch('http://localhost:5000/predict', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+      document.getElementById('result').innerText = 'Prediction: ' + data.prediction;
+    }
+
+    async function fetchWeather() {
+      // Placeholder for now
+      document.getElementById('weatherInfo').innerText = '☀️ 30°C, Sunny (demo placeholder)';
+    }
+
+    function resetResult() {
+      document.getElementById('imageInput').value = '';
+      document.getElementById('result').innerText = '';
+    }
+  </script>
+</body>
+</html>
