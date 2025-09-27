@@ -128,6 +128,6 @@ def predict():
 Distributed under the MIT License.
 
 🧑‍💻 Contact
-[Your Name] - [Your Email/LinkedIn]
+[Rahul Barua] - rahulbarua7657@gmail.com
 
-Project Link: https://github.com/[Your-GitHub-Username]/fasal-crop-detector
+Project Link:https://github.com/Rahulbarua124/Chatbot
