@@ -1,135 +1,133 @@
-Conversational AI for [Briefly state the main function, e.g., real-time technical support or interactive storytelling]
-📖 Overview
-This repository hosts a sophisticated [Type of Bot, e.g., RAG-powered Q&A Bot / Task-Oriented Dialogue System] designed to [Explain the primary goal]. It leverages [Key Technology, e.g., Large Language Models (LLMs)] to provide natural, contextual, and accurate responses.
 
-🖼️ Demo / Live Preview
-(Optional, but highly recommended: Include a GIF or a high-quality screenshot of your chatbot in action.)
+Based on the uploaded files, your project is a Crop Health Detection application that uses a deep learning model to classify plant images, and it includes a basic web interface. It is not a conversational chatbot as the provided README template suggests, but a Plant Disease/Stress Detection tool.
 
-[GIF/Screenshot Link Here]
+I will update your README.md to accurately reflect the project's actual function and technical stack.
 
-🚀 Key Features
-Natural Language Understanding (NLU): Highly accurate intent and entity recognition using [Framework, e.g., spaCy/NLTK].
+Updated README.md for Crop Health Detection
+Here is the revised and completed README.md file in Markdown format:
 
-Contextual Memory: Maintains conversation history using [Database/Method, e.g., Redis or an internal state manager].
+Markdown
 
-External Tool Integration (RAG): Can connect to external APIs or databases (e.g., product catalog, weather API) to fetch real-time data using [Method/Tool, e.g., custom actions / LangChain tools].
+# 🌿 FASAL: Crop Health Detector (Image Classification)
 
-Deployment Ready: Packaged using Docker for easy deployment in any cloud environment.
+## ✨ AI-Powered Tool for Real-Time Plant Disease and Stress Detection
 
-[Unique Feature]: Mention one standout feature, e.g., "Supports multilingual input."
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue)]()
+[![Built with](https://img.shields.io/badge/Built%20with-Flask%2FTensorFlow%2FHTML-red)]()
+[![Status: Active](https://img.shields.io/badge/Status-Active-brightgreen)]()
 
-⚙️ Technologies Used
-Category	Technology	Purpose in this Project
-Framework	[Rasa / LangChain / Hugging Face]	Core conversational logic and dialogue management.
-Language	[Python / JavaScript / TypeScript]	Primary programming language.
-LLM	[OpenAI API / Gemini / Llama]	Model for generative responses and reasoning.
-Vector DB	[Pinecone / ChromaDB / FAISS]	Storing and retrieving document embeddings for RAG.
-Frontend	[Streamlit / React / HTML/CSS]	The user interface for interacting with the bot.
+## 📖 Overview
 
-Export to Sheets
-🛠️ Installation & Setup
-These instructions will get you a copy of the project up and running on your local machine.
+This repository hosts **FASAL** (meaning 'crop' in Hindi), an application designed to assess crop health by classifying images into four categories: **Healthy**, **Disease**, **Pest**, or **Water Stress**.
 
-Prerequisites
+It consists of a **Python Flask backend** that serves a **TensorFlow Keras model** for prediction, and a simple **HTML/CSS/JavaScript frontend** for image upload and result display. The project also includes a data generation script and a basic model training script.
+
+### 🖼️ Demo / Live Preview
+
+
+*The web interface allows users to upload an image and receive an instant health prediction.*
+
+## 🚀 Key Features
+
+* **Image Classification:** Identifies crop health issues across four key classes: **Healthy**, **Disease**, **Pest**, and **Water Stress**.
+* **Minimalist Web Interface:** Simple and responsive frontend built with pure HTML/CSS/JS (`frontend_html/index.html`).
+* **Deep Learning Backend:** Uses a **Convolutional Neural Network (CNN)** built with **TensorFlow/Keras** for image processing and prediction.
+* **RESTful API:** Prediction endpoint (`/predict`) exposed via a **Flask** application.
+* **Data Generation Utility:** Includes a script (`generate_dataset.py`) to create a placeholder image dataset for initial testing and model training.
+
+## ⚙️ Technologies Used
+
+| Category | Technology | Purpose in this Project |
+| :--- | :--- | :--- |
+| **Backend** | [cite_start]**Flask** [cite: 1] | Lightweight web server to host the prediction API. |
+| **Machine Learning** | [cite_start]**TensorFlow** [cite: 1] | Used for loading and running the CNN model. |
+| **Image Handling** | [cite_start]**Pillow (PIL)** [cite: 1] [cite_start]/ **NumPy** [cite: 1] | Image loading, resizing, and array conversion for model input. |
+| **Frontend** | **HTML/CSS/JS** | User interface for image upload and viewing results. |
+
+## 🛠️ Installation & Setup
+
+### Prerequisites
+
 You will need the following installed:
 
-Python 3.9+
+* Python **3.8+**
+* `pip` package installer
 
-Git
+### Step-by-Step Guide
 
-Docker (Optional, for containerized deployment)
+1.  **Clone the Repository**
+    ```bash
+    git clone [https://github.com/](https://github.com/)[Your-GitHub-Username]/fasal-crop-detector.git
+    cd fasal-crop-detector
+    ```
 
-Step-by-Step Guide
-Clone the Repository
+2.  **Setup the Backend Environment**
+    ```bash
+    # Navigate to the backend directory
+    cd backend 
+    
+    # Install Python dependencies
+    pip install -r requirements.txt 
+    ```
 
-Bash
+3.  **Generate Placeholder Dataset**
+    *(Required before training the model)*
+    ```bash
+    cd .. # Go back to the root directory
+    python generate_dataset.py
+    # This creates the 'dataset' folder with placeholder images.
+    ```
 
-git clone https://github.com/[Your-GitHub-Username]/[your-repo-name].git
-cd [your-repo-name]
-Create a Virtual Environment
+4.  **Train and Save the Model**
+    *(This step simulates the creation of the model used in the backend)*
+    ```bash
+    python model_training/train_model.py
+    # This trains a simple CNN and saves it as backend/model/crop_model.h5
+    ```
 
-Bash
+## 🚀 How to Run the Application
 
-python -m venv venv
-source venv/bin/activate  # On Windows, use: venv\Scripts\activate
-Install Dependencies
+The application requires the Flask backend server to be running to handle predictions.
 
-Bash
+1.  **Start the Backend API Server**
 
-pip install -r requirements.txt
-Set Environment Variables
+    ```bash
+    cd backend
+    python app.py
+    # The server will run in debug mode at: http://localhost:5000
+    ```
 
-Create a file named .env in the root directory and add your secret keys.
+2.  **Access the Frontend**
 
-# Example for OpenAI
-OPENAI_API_KEY="sk-..." 
-# Example for your database
-DB_CONNECTION_STRING="postgresql://user:pass@host:port/db"
-Train the Model
-(Skip this step if using a remote LLM API)
+    The frontend is a static HTML file:
+    
+    * Open your browser.
+    * Navigate to the file: `Chatbot-main.zip/Chatbot-main/frontend_html/index.html`
+    * Use the "Detect" button to send an image to the running server at `http://localhost:5000/predict`.
 
-Bash
+## ⚙️ Core Prediction Logic
 
-# Command to train your local Rasa/NLU model
-rasa train
-🚀 How to Run the Chatbot
-Option 1: Local Server (Development)
-Run the backend logic and the frontend interface separately.
+The prediction is handled by the Flask endpoint in `backend/app.py`:
 
-Bash
-
-# 1. Start the Chatbot Backend (e.g., for custom actions)
-python main.py & 
-
-# 2. Start the Frontend/UI (e.g., Streamlit or Flask app)
-streamlit run app.py
-# The application will be accessible at: http://localhost:8501
-Option 2: Docker (Production/Testing)
-For a clean, production-ready environment:
-
-Build the Docker Image
-
-Bash
-
-docker build -t my-chatbot-app .
-Run the Container
-
-Bash
-
-docker run -p 5005:5005 my-chatbot-app
-# The chatbot API will be available at: http://localhost:5005
-📝 Project Structure
-├── .github/              # GitHub workflows (e.g., CI/CD)
-├── actions/              # (Rasa) Custom actions or logic for tool use
-├── data/                 # Training data (NLU, Stories)
-├── models/               # Trained NLU/Core models
-├── src/
-│   ├── api.py            # FastAPI/Flask endpoints for the chat API
-│   ├── utils.py          # Helper functions (embeddings, parsing)
-│   └── app.py            # Frontend Streamlit/web interface
-├── .env.example          # Template for environment variables
-├── Dockerfile            # Container build instructions
-├── requirements.txt      # Python dependencies
-└── README.md             # This file
-🤝 Contributing
-Contributions are welcome! If you have a suggestion or find a bug, please follow these steps:
-
-Fork the project.
-
-Create your feature branch (git checkout -b feature/AmazingFeature).
-
-Commit your changes (git commit -m 'Add some AmazingFeature').
-
-Push to the branch (git push origin feature/AmazingFeature).
-
-Open a Pull Request.
-
+```python
+@app.route('/predict', methods=['POST'])
+def predict():
+    # 1. Image is loaded and resized to (224, 224)
+    image = Image.open(request.files['image']).resize((224, 224))
+    
+    # 2. Converted to a normalized NumPy array
+    img_array = np.expand_dims(np.array(image) / 255.0, axis=0)
+    
+    # 3. Prediction is run on the loaded Keras model
+    prediction = model.predict(img_array)
+    
+    # 4. Returns the predicted class (Healthy, Disease, Pest, or Water Stress)
+    return jsonify({'prediction': classes[np.argmax(prediction)]})
 📄 License
-Distributed under the MIT License. See LICENSE for more information.
+Distributed under the MIT License.
 
 🧑‍💻 Contact
-[Your Name] - [Your Email]
+[Your Name] - [Your Email/LinkedIn]
 
-Project Link: https://github.com/[Your-GitHub-Username]/[your-repo-name]
-
-(Delete this line: Remember to fill in all the bracketed placeholders and choose the relevant technologies for your specific chatbot!)
+Project Link: https://github.com/[Your-GitHub-Username]/fasal-crop-detector
